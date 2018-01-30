@@ -5,44 +5,92 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.dream</groupId>
-    <artifactId>pay-demo</artifactId>
+    <artifactId>pay-secure-storage</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>pay-demo-access</module>
-        <module>pay-demo-deploy</module>
-        <module>pay-demo-service</module>
-        <module>pay-demo-dal</module>
-        <module>pay-demo-access-impl</module>
+        <module>pay-secure-storage-deploy</module>
+        <module>pay-secure-storage-access</module>
+        <module>pay-secure-storage-access-impl</module>
+        <module>pay-secure-storage-service</module>
+        <module>pay-secure-storage-dal</module>
     </modules>
 
     <properties>
-        <spring.version>3.2.13.RELEASE</spring.version>
+        <lombok.version>1.16.6</lombok.version>
+        <commons-lang3.version>3.3.2</commons-lang3.version>
+
         <bootstrap.version>3.0.5-SNAPSHOT</bootstrap.version>
         <jaxrs-api.version>3.0.7.Final</jaxrs-api.version>
+        <framework-ibatis.version>1.0.2-RELEASE</framework-ibatis.version>
+
+        <mybatis.version>3.2.8</mybatis.version>
+        <mybatis-spring.version>1.2.2</mybatis-spring.version>
+        <mysql-connector-java.version>5.1.30</mysql-connector-java.version>
+        <druid.version>1.0.24</druid.version>
+
+        <spring.version>3.2.13.RELEASE</spring.version>
+
+        <pay-common.version>1.0-SNAPSHOT</pay-common.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.youzan.platform</groupId>
                 <artifactId>bootstrap</artifactId>
                 <version>${bootstrap.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.youzan.platform</groupId>
-                <artifactId>nova-datasource</artifactId>
-                <version>0.1.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.youzan.platform</groupId>
-                <artifactId>redisclient</artifactId>
-                <version>1.0.3-SNAPSHOT</version>
+                <groupId>com.youzan.nova.framework</groupId>
+                <artifactId>framework-ibatis</artifactId>
+                <version>${framework-ibatis.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>jaxrs-api</artifactId>
                 <version>${jaxrs-api.version}</version>
+            </dependency>
+
+            <!-- dao dependencies begin-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis-spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.dream.pay</groupId>
+                <artifactId>pay-common</artifactId>
+                <version>${pay-common.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

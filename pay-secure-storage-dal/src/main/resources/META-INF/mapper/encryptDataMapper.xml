@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dream.pay.secure.storage.dao.EncryptDataDao">
+    <resultMap id="BaseResultMap" type="com.dream.pay.secure.storage.model.EncryptData">
+        <constructor>
+            <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long"/>
+            <arg column="encrypt_index" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="encrypt_data" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="data_key_encrypt" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="version" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, encrypt_index, encrypt_data, data_key_encrypt, version,create_time, update_time
+    </sql>
+    <select id="queryByEncryptIndex" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from secure_storage_encrypt_data
+        where encrypt_index = #{encryptIndex,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="com.dream.pay.secure.storage.model.EncryptData">
+        insert into secure_storage_encrypt_data (id, encrypt_index, encrypt_data, data_key_encrypt, version,create_time,
+        update_time)
+        values (#{id,jdbcType=BIGINT}, #{encryptIndex,jdbcType=VARCHAR}, #{encryptData,jdbcType=VARCHAR},
+        #{dataKeyEncrypt,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+</mapper>
